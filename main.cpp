@@ -11,72 +11,42 @@
 
 using namespace sfw;
 
-/*
-void cool()
-{
-	
-
-	unsigned f = loadTextureMap("./res/tonc_font.png", 16, 6);
-	unsigned d = loadTextureMap("./res/fontmap.png",16,16);
-	unsigned r = loadTextureMap("./res/background.jpg");
-	unsigned u = loadTextureMap("./res/crosshair.png");
-
-	float acc = 0;
-	char c = '\0';
-
-	
-	{	
-		drawString(f, " !\"#$%&'()*+,./-\n0123456789:;<=>?\n@ABCDEFGHIJKLMNO\nPQRSTUVWXYZ[\\]^_\n`abcdefghijklmno\npqrstuvwxyz{|}~", 0, 600, 48, 48, 0, ' ');
-		drawTexture(r, 0, 600, 800, 600, 0, false,0, 0x88888888);
-
-		acc += getDeltaTime();
-		drawString(d, "TIME 4 FUN", 400, 300, 48, 48, -acc*24,'\0',RED);
-		
-		drawString(d, "This is Rice", 200, 100, 48, 48);
-		drawString(d, "6", 400, 32, 24, 24);
-		drawString(d, "12", 400, 600 - 32, 24, 24);
-		drawString(d, "3", 800-32, 300, 24, 24);
-		drawString(d, "9", 32, 300, 24, 24);
-
-		if(getMouseButton(MOUSE_BUTTON_RIGHT))
-			drawTexture(u, getMouseX(), getMouseY(), getTextureWidth(u)/2.5, getTextureHeight(u)/2.5,45,true,0,0x88ffffff);
-		else drawTexture(u, getMouseX(), getMouseY(), getTextureWidth(u)/2, getTextureHeight(u)/2);
-	}
-
-	termContext();
-}
-*/
 
 int main()
 {
 	initContext(800, 600, "NSFW Draw");
 	setBackgroundColor(WHITE);
 
-	unsigned d = loadTextureMap("./res/fontmap.png", 16, 16);
+	GameState gs;
+
+	gs = createGameState();
 
 	float acc = 0;
 	float acc2 = 0;
 	float accRand = rand();
 
 	int player = 0;
+	
 	Player p1 = createPlayer( 10, 'W', 'S');
 	Player p2 = createPlayer(790, 'I', 'K');
-	Ball b = createBall(400, 290, 100, 100, 10, 30);
+	
 
-	GameState gs;
+	drawPlayer(gs);
+
+	//Ball b = createBall(400, 290, 100, 100, 10, 30);
+
+	
 	while (stepContext())
 	{		
 
 			drawLine(400, 0, 400, 600, BLACK);
 
 			updateGameState(gs);
-			drawGameState(gs);
+			//renderGameState(gs);
 
-			updatePlayer(p1);
-			updatePlayer(p2);
-		
-			drawPlayer(p1);
-			drawPlayer2(p2);
+			//updatePlayer(p1);
+			//updatePlayer(p2);
+			
 		/*
 		// PADDLE 1
 		// If the key is W, then P1 will go up (+=) by the speed of delta time times 500
@@ -113,10 +83,13 @@ int main()
 		accRand += getDeltaTime() * 100;
 
 		drawCircle(400 + accRand, 300 + accRand, 10, 30, BLACK);
-		*/
+		
+		
 			updateBall(b);
+			
 			drawBall(b);
 
+			
 			if (b.xpos < p1.x && b.ypos > p1.y && b.ypos < p1.y+p1.size)
 			{
 				b.xvel *= -1;
@@ -132,7 +105,9 @@ int main()
 				b.xvel -= 50;
 				b.yvel -= 50;
 			}
+			*/
 
 	}
 	termContext();
+	//termContext();
 }
