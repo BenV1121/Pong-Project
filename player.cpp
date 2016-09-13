@@ -3,50 +3,44 @@
 
 using namespace sfw;
 
-Player createPlayer(float a_x, char a_up, char a_down)
+void Player::init(float a_x, char a_up, char a_down)
 {
-	Player ret;
-	ret.x = a_x;
-	ret.up = a_up;
-	ret.down = a_down;
+	x = a_x;
+	y = 300;
 
-	ret.size = 75;
-	ret.y = 300;
-	return ret;
+	up = a_up;
+	down = a_down;
+
+	size = 75;
 }
 
-void drawPlayer(const Player &p)
+void Player::draw() const
 {
-	drawLine(p.x, p.y, p.x, p.y + p.size, RED);
+	drawLine(x, y, x, y + size, RED);
 }
 
-void drawPlayer2(const Player &p)
-{
-	drawLine(p.x, p.y, p.x, p.y + p.size, BLUE);
-}
-
-void updatePlayer(Player &p)
+void Player::update()
 {
 
-	if (getKey(p.up))
+	if (getKey(up))
 	{
-		p.y += getDeltaTime() * 500;
+		y += getDeltaTime() * 500;
 	}
 
 	// If the key is S, then P1 will go down (-=) by the speed of delta time times 500
-	if (getKey(p.down))
+	if (getKey(down))
 	{
-		p.y -= getDeltaTime() * 500;
+		y -= getDeltaTime() * 500;
 	}
 
 
-	if (p.y < -50)
+	if (y < -50)
 	{
-		p.y = 600;
+		y = 600;
 	}
 
-	if (p.y > 600)
+	if (y > 600)
 	{
-		p.y = -50;
+		y = -50;
 	}
 }

@@ -4,65 +4,63 @@
 int score1 = 0;
 int score2 = 0;
 
-Ball createBall(float b_xpos, float b_ypos, float b_xvel, float b_yvel, float b_rad, unsigned b_steps)
+void Ball::init(float b_xpos, float b_ypos, float b_xvel, float b_yvel, float b_rad, unsigned b_steps)
 {
-	Ball ret;
-	ret.xpos = b_xpos;
-	ret.ypos = b_ypos;
-	ret.xvel = b_xvel;
-	ret.yvel = b_yvel;
-	ret.radius = b_rad;
-	ret.steps = b_steps;
-
-	return ret;
+	xpos = b_xpos;
+	ypos = b_ypos;
+	xvel = b_xvel;
+	yvel = b_yvel;
+	radius = b_rad;
+	steps = b_steps;
 }
 
-void drawBall(const Ball &b)
+
+void Ball::draw() const
 {
-	drawCircle(b.xpos, b.ypos, b.radius, b.steps, BLACK);
+	drawCircle(xpos, ypos, radius, steps, WHITE);
 }
 
-void updateBall(Ball &b)
+void Ball::update()
 {
 	unsigned d = loadTextureMap("./res/fontmap.png", 16, 16);
 
-	b.xpos += b.xvel * getDeltaTime();
-	b.ypos += b.yvel * getDeltaTime();
+	xpos += xvel * getDeltaTime();
+	ypos += yvel * getDeltaTime();
 
-	if (b.ypos < 0)
+	if (ypos < 0)
 	{
-		b.yvel *= -1;
+		yvel *= -1;
 	}
 
-	if (b.ypos > 600)
+	if (ypos > 600)
 	{
-		b.yvel *= -1;
+		yvel *= -1;
 	}
 
-	if (b.xpos < 0)
+	if (xpos < 0)
 	{
 		//b.xvel *= -1;
-		b.xpos = 400;
-		b.ypos = 300;
+		xpos = 400;
+		ypos = 300;
 
-		b.xvel = rand() % 1000 - 10;
-		b.yvel = rand() % 1000 - 10;
+		xvel = rand() % 1000 - 10;
+		yvel = rand() % 1000 - 10;
 
 		std::cout << "Score: " << ++score2 << std::endl;
 	}
 
-	if (b.xpos > 800)
+	if (xpos > 800)
 	{
 		//b.xvel *= -1;
-		b.xpos = 400;
-		b.ypos = 300;
+		xpos = 400;
+		ypos = 300;
 
-		b.xvel = rand() % 1000 - 1010;
-		b.yvel = rand() % 1000 - 1010;
-		
+		xvel = rand() % 1000 - 1010;
+		yvel = rand() % 1000 - 1010;
+
 		std::cout << "Score: " << ++score1 << std::endl;
 	}
 	drawString(d, std::to_string(score1).c_str(), 0, 580, 40, 40, '\0');
-	drawString(d, std::to_string(score2).c_str(), 755, 580, 40, 40, '\0');
+	drawString(d, std::to_string(score2).c_str(), 705, 580, 40, 40, '\0');
 }
 

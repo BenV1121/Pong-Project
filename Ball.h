@@ -9,14 +9,14 @@
 
 using namespace sfw;
 
-struct Ball
+class Ball
 {
+	public:
 	float xpos, ypos;
 	float xvel, yvel;
 	float radius;
 	unsigned steps;
+	void init(float b_xpos, float b_ypos, float b_xvel, float b_yvel, float b_rad, unsigned b_steps);
+	void draw() const;
+	void update();
 };
-
-Ball createBall(float b_xpos, float b_ypos, float b_xvel, float b_yvel, float b_rad, unsigned b_steps);
-void drawBall(const Ball &b);
-void updateBall(Ball &b);
