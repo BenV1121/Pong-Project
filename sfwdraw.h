@@ -27,6 +27,7 @@ NOTE: YOU MUST CALL initContext for any of the functions to work!
 ************************/
 
 // Uses GLFW keycodes, research for additional options.
+#define KEY_SPACE	  32
 #define KEY_ESCAPE    256
 #define KEY_ENTER	  257
 #define KEY_TAB		  258
