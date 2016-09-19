@@ -10,8 +10,9 @@ public:
 	float x, y;
 	float size;
 	char up, down;
+	unsigned color;
 
-	void init(float a_x, char a_up, char a_down);
+	void init(float a_x, char a_up, char a_down, unsigned a_color);
 	void draw() const;
 	void update();
 };

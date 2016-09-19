@@ -3,7 +3,7 @@
 
 using namespace sfw;
 
-void Player::init(float a_x, char a_up, char a_down)
+void Player::init(float a_x, char a_up, char a_down, unsigned a_color)
 {
 	x = a_x;
 	y = 300;
@@ -12,11 +12,13 @@ void Player::init(float a_x, char a_up, char a_down)
 	down = a_down;
 
 	size = 75;
+
+	color = a_color;
 }
 
 void Player::draw() const
 {
-	drawLine(x, y, x, y + size, RED);
+	drawLine(x, y, x, y + size, color);
 }
 
 void Player::update()
