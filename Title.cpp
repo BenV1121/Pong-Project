@@ -15,7 +15,7 @@ void Title::draw()
 APP_STATE Title::next()
 {
 	if (sfw::getKey(KEY_SPACE))
-		return GAME;
+		return ENTER_GAME;
 	else
 		return TITLE;
 }

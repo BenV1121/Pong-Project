@@ -19,4 +19,7 @@ class Ball
 	void init(float b_xpos, float b_ypos, float b_xvel, float b_yvel, float b_rad, unsigned b_steps);
 	void draw() const;
 	void update();
+
+	int p1Score;
+	int p2Score;
 };

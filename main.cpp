@@ -12,6 +12,7 @@
 #include "Splash.h"
 #include "Game.h"
 #include "Title.h"
+#include "EndState.h"
 
 using namespace sfw;
 
@@ -30,18 +31,18 @@ int main()
 
 	unsigned font = sfw::loadTextureMap("./res/fontmap.png", 16, 16);
 
+	//unsigned d = sfw::loadTextureMap("./res/fontmap.png", 16, 16);
+
 	Splash splash;
-	Game game;
 	Title title;
+	GameState gs;
+	EndState end;
 
 	APP_STATE state = ENTER_SPLASH;
 
 	splash.init(font);
 	title.init(font);
-
-	GameState gs;
-
-	gs.init();
+	end.init(font);
 
 	while (stepContext())
 	{		
@@ -63,24 +64,38 @@ int main()
 			drawTexture(t, 0, 600, 800, 600, 0, false, 0, 0x88888888);
 			break;
 
-
+		case ENTER_GAME:
+			gs.init();
 		case GAME:
 			drawTexture(r, 0, 600, 800, 600, 0, false, 0, 0x88888888);
 			gs.draw();
 			gs.update();
 			drawLine(400, 0, 400, 600, BLACK);
+			state = gs.next();
 
-			unsigned d = sfw::loadTextureMap("./res/fontmap.png", 16, 16);
+			
 
 			if (getKey(KEY_LEFT_ALT))
 			{
-				drawString(d, "Yare yare daze.", 50, 50, 20, 20, 0, '\0', WHITE);
+				drawString(font, "Yare yare daze.", 50, 50, 20, 20, 0, '\0', WHITE);
 			}
 
 			if (getKey(KEY_RIGHT_ALT))
 			{
-				drawString(d, "KONO DIO DA!", 500, 50, 20, 20, 0, '\0', WHITE);
+				drawString(font, "KONO DIO DA!", 500, 50, 20, 20, 0, '\0', WHITE);
 			}
+			break;
+
+
+		case ENTER_END:
+			end.play(gs.getp1Score(), gs.getp2Score());
+		case END:
+			end.update();
+			end.draw();
+
+			state = end.next();
+			//std::cout << "This is the end!";
+			break;
 		}
 	}
 	termContext();

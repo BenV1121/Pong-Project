@@ -31,9 +31,12 @@ void GameState::draw() const
 	//sfw::drawString(font, "TEST", 0, 16, 16, 16);
 }
 
+
+
 void GameState::update()
 {
 	ball.update();
+	std::cout << ball.xpos << " " << ball.ypos << " " << std::endl;
 	player1.update();
 	player2.update();
 
@@ -56,28 +59,42 @@ void GameState::update()
 		ball.yvel -= 50;
 	}
 
-	// Collision with ball and ORA/MUDAs
-	if (ball.ypos + ball.radius > player1.ora.y - player1.ora.size &&							// top of ball > bottom of the box
-		ball.ypos - ball.radius < player1.ora.y &&		// bot of ball < top of the box
-		ball.xpos - ball.radius < player1.ora.x + player1.ora.size * 2 &&	// lef of ball < right of the box
-		ball.xpos + ball.radius > player1.ora.x)							// rht of ball > left of the box
+	if (player1.ora.active)
 	{
-		ball.xvel *= -1;
-		ball.xpos = player1.ora.x + player1.ora.size * 2;
-		ball.ypos = player1.ora.y + player1.ora.size * 1.5f;
-		//ball.xvel += 50;
-		//ball.yvel += 50;
+		// Collision with ball and ORA/MUDAs
+		if (ball.ypos + ball.radius > player1.ora.y - player1.ora.size &&		// top of ball > bottom of the box
+			ball.ypos - ball.radius < player1.ora.y &&							// bot of ball < top of the box
+			ball.xpos - ball.radius < player1.ora.x + player1.ora.size * 2 &&	// lef of ball < right of the box
+			ball.xpos + ball.radius > player1.ora.x)							// rht of ball > left of the box
+		{
+			ball.xvel *= -1;
+			ball.xpos = player1.ora.x + player1.ora.size * 2;
+			ball.ypos = player1.ora.y + player1.ora.size * 1.5f;
+			//ball.xvel += 50;
+			//ball.yvel += 50;
+		}
 	}
 
-	if (ball.ypos + ball.radius > player2.muda.y - player2.muda.size &&							// top of ball > bottom of the box
-		ball.ypos - ball.radius < player2.muda.y &&		// bot of ball < top of the box
-		ball.xpos - ball.radius > player2.muda.x + player1.muda.size * 2 &&	// lef of ball < right of the box
-		ball.xpos + ball.radius > player2.muda.x)							// rht of ball > left of the box
+	if (player2.muda.active)
 	{
-		ball.xvel *= -1;
-		ball.xpos = player2.muda.x + player2.muda.size * 2;
-		ball.ypos = player2.muda.y + player2.muda.size * 1.5f;
-		//ball.xvel += 50;
-		//ball.yvel += 50;
+		if (ball.ypos + ball.radius > player2.muda.y - player2.muda.size &&		// top of ball > bottom of the box
+			ball.ypos - ball.radius < player2.muda.y &&							// bot of ball < top of the box
+			ball.xpos - ball.radius > player2.muda.x + player2.muda.size * 2 &&	// lef of ball < right of the box
+			ball.xpos + ball.radius > player2.muda.x)							// rht of ball > left of the box
+		{
+			ball.xvel *= -1;
+			ball.xpos = player2.muda.x + player2.muda.size * 2;
+			ball.ypos = player2.muda.y + player2.muda.size * 1.5f;
+			//ball.xvel += 50;
+			//ball.yvel += 50;
+		}
 	}
+}
+
+APP_STATE GameState::next() const
+{
+	if (ball.p1Score >= 10 || ball.p2Score >= 10)
+		return ENTER_END;
+
+	return GAME;
 }

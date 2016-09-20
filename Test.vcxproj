@@ -125,11 +125,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="EndState.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MUDA.cpp" />
     <ClCompile Include="ORA.cpp" />
+    <ClCompile Include="P1win.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Splash.cpp" />
     <ClCompile Include="Title.cpp" />
@@ -137,10 +139,12 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="constdec1.h" />
+    <ClInclude Include="EndState.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="MUDA.h" />
     <ClInclude Include="ORA.h" />
+    <ClInclude Include="P1win.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Splash.h" />
     <ClInclude Include="Title.h" />

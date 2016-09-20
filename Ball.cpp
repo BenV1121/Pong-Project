@@ -1,9 +1,6 @@
 #include "sfwdraw.h"
 #include "Ball.h"
 
-int score1 = 0;
-int score2 = 0;
-
 void Ball::init(float b_xpos, float b_ypos, float b_xvel, float b_yvel, float b_rad, unsigned b_steps)
 {
 	xpos = b_xpos;
@@ -12,6 +9,8 @@ void Ball::init(float b_xpos, float b_ypos, float b_xvel, float b_yvel, float b_
 	yvel = b_yvel;
 	radius = b_rad;
 	steps = b_steps;
+	p1Score = 0;
+	p2Score = 0;
 }
 
 
@@ -30,11 +29,15 @@ void Ball::update()
 	if (ypos < 0)
 	{
 		yvel *= -1;
+
+		ypos = 0 + radius;
 	}
 
 	if (ypos > 600)
 	{
 		yvel *= -1;
+
+		ypos = 600 - radius;
 	}
 
 	if (xpos < 0)
@@ -46,7 +49,7 @@ void Ball::update()
 		xvel = rand() % 1000 - 10;
 		yvel = rand() % 1000 - 10;
 
-		std::cout << "Score: " << ++score2 << std::endl;
+		std::cout << "Score: " << ++p2Score << std::endl;
 	}
 
 	if (xpos > 800)
@@ -58,9 +61,9 @@ void Ball::update()
 		xvel = rand() % 1000 - 1010;
 		yvel = rand() % 1000 - 1010;
 
-		std::cout << "Score: " << ++score1 << std::endl;
+		std::cout << "Score: " << ++p1Score << std::endl;
 	}
-	drawString(d, std::to_string(score1).c_str(), 0, 580, 40, 40, '\0');
-	drawString(d, std::to_string(score2).c_str(), 705, 580, 40, 40, '\0');
+	drawString(d, std::to_string(p1Score).c_str(), 0, 580, 40, 40, '\0');
+	drawString(d, std::to_string(p2Score).c_str(), 705, 580, 40, 40, '\0');
 }
 

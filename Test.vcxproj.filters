@@ -42,6 +42,12 @@
     <ClCompile Include="MUDA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="P1win.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EndState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -69,6 +75,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MUDA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="P1win.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EndState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

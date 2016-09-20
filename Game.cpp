@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "sfwdraw.h"
+#include "Ball.h"
 
 void Game::init(int a_font)
 {
@@ -13,5 +14,5 @@ void Game::draw()
 
 APP_STATE Game::next()
 {
-	return SPLASH;
+	return END;
 }

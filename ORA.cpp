@@ -18,8 +18,6 @@ void ORA::draw() const
 	{
 		unsigned d = sfw::loadTextureMap("./res/dio_font.png", 16, 6);
 		drawString(d, "ab", x, y, size, size, 0, '\0', BLUE);
-
-		
 	}
 }
 
