@@ -22,7 +22,7 @@ int main()
 
 	initContext(800, 600, "Undefined Pong");
 
-	unsigned r = sfw::loadTextureMap("./res/WoodenTiles.png");
+	unsigned r = sfw::loadTextureMap("./res/Cairo.png");
 
 	unsigned b = sfw::loadTextureMap("./res/SS1.png");
 
@@ -69,6 +69,18 @@ int main()
 			gs.draw();
 			gs.update();
 			drawLine(400, 0, 400, 600, BLACK);
+
+			unsigned d = sfw::loadTextureMap("./res/fontmap.png", 16, 16);
+
+			if (getKey(KEY_LEFT_ALT))
+			{
+				drawString(d, "Yare yare daze.", 50, 50, 20, 20, 0, '\0', WHITE);
+			}
+
+			if (getKey(KEY_RIGHT_ALT))
+			{
+				drawString(d, "KONO DIO DA!", 500, 50, 20, 20, 0, '\0', WHITE);
+			}
 		}
 	}
 	termContext();

@@ -3,45 +3,35 @@
 
 using namespace sfw;
 
-void ORA::init(float o_x, float o_xvel, char o_up, char o_down)
+void ORA::init(float o_x, float o_xvel)
 {
+	active = false;
 	x = o_x;
-	y = 350;
+	y = 400;
 	xvel = o_xvel;
-	up = o_up;
-	down = o_down;
+	size = 50;
 }
 
 void ORA::draw() const
 {
-	unsigned d = sfw::loadTextureMap("./res/fontmap.png", 16, 16);
-	if (getKey(KEY_LEFT_ALT))
-	{ 
-		drawString(d, "ORA!", x, y, 20, 20, 0, '\0', BLUE);
+	if (active)
+	{
+		unsigned d = sfw::loadTextureMap("./res/dio_font.png", 16, 6);
+		drawString(d, "ab", x, y, size, size, 0, '\0', BLUE);
+
+		
 	}
 }
 
 void ORA::update()
 {
-	if (getKey(up))
+	if (active)
 	{
-		y += getDeltaTime() * 500;
-	}
+		x += sfw::getDeltaTime() * 5000;
 
-	// If the key is S, then P1 will go down (-=) by the speed of delta time times 500
-	if (getKey(down))
-	{
-		y -= getDeltaTime() * 500;
-	}
-
-
-	if (y < -50)
-	{
-		y = 600;
-	}
-
-	if (y > 600)
-	{
-		y = -50;
+		if (x > 800)
+		{
+			active = false;
+		}
 	}
 }

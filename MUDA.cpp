@@ -3,48 +3,33 @@
 
 using namespace sfw;
 
-void MUDA::init(float o_x, float o_xvel, char o_up, char o_down)
+void MUDA::init(float o_x, float o_xvel)
 {
+	active = false;
 	x = o_x;
-	y = 350;
+	y = 400;
 	xvel = o_xvel;
-	up = o_up;
-	down = o_down;
+	size = 50;
 }
 
 void MUDA::draw() const
 {
-	unsigned d = sfw::loadTextureMap("./res/fontmap.png", 16, 16);
-	if (getKey(KEY_RIGHT_ALT))
+	if (active)
 	{
-		int x = 680;
-
-		drawString(d, "MUDA!", x, y, 20, 20, 0, '\0', YELLOW);
-		x -= xvel * getDeltaTime();
+		unsigned d = sfw::loadTextureMap("./res/dio_font.png", 16, 6);
+		drawString(d, "Z[", x, y, size, size, 0, '\0', YELLOW);
 	}
 }
 
 void MUDA::update()
 {
-	if (getKey(up))
+	if (active)
 	{
-		y += getDeltaTime() * 500;
-	}
+		x -= sfw::getDeltaTime() * 5000;
 
-	// If the key is S, then P1 will go down (-=) by the speed of delta time times 500
-	if (getKey(down))
-	{
-		y -= getDeltaTime() * 500;
-	}
-
-
-	if (y < -50)
-	{
-		y = 600;
-	}
-
-	if (y > 600)
-	{
-		y = -50;
+		if (x < 0)
+		{
+			active = false;
+		}
 	}
 }

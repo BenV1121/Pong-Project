@@ -8,8 +8,6 @@ class GameState
 {
 	Player player1, player2;
 	Ball ball;
-	ORA ora;
-	MUDA muda;
 
 	unsigned font;
 
