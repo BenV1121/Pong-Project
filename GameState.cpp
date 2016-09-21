@@ -36,7 +36,6 @@ void GameState::draw() const
 void GameState::update()
 {
 	ball.update();
-	std::cout << ball.xpos << " " << ball.ypos << " " << std::endl;
 	player1.update();
 	player2.update();
 
@@ -93,7 +92,7 @@ void GameState::update()
 
 APP_STATE GameState::next() const
 {
-	if (ball.p1Score >= 10 || ball.p2Score >= 10)
+	if (ball.p1Score <= 0 || ball.p2Score <= 0)
 		return ENTER_END;
 
 	return GAME;

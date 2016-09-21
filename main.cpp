@@ -51,23 +51,23 @@ int main()
 		case ENTER_SPLASH:
 			splash.play();
 		case SPLASH:
+			drawTexture(b, 0, 600, 800, 600, 0, false, 0, WHITE);
+			setBackgroundColor(WHITE);
 			splash.step();
 			splash.draw();
 			state = splash.next();
-			drawTexture(b, 0, 600, 800, 600, 0, false, 0, 0x88888888);
-			setBackgroundColor(WHITE);
 			break;
 
 		case TITLE:
+			drawTexture(t, 0, 600, 800, 600, 0, false, 0, WHITE);
 			title.draw();
 			state = title.next();
-			drawTexture(t, 0, 600, 800, 600, 0, false, 0, 0x88888888);
 			break;
 
 		case ENTER_GAME:
 			gs.init();
 		case GAME:
-			drawTexture(r, 0, 600, 800, 600, 0, false, 0, 0x88888888);
+			drawTexture(r, 0, 600, 800, 600, 0, false, 0, WHITE);
 			gs.draw();
 			gs.update();
 			drawLine(400, 0, 400, 600, BLACK);

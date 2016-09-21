@@ -15,6 +15,8 @@ void Splash::draw()
 {
 	sfw::drawString(font, "This is a Splash Screen", 200, 180, 20, 20);
 	sfw::drawString(font, "Please wait", 200, 100, 20, 20);
+	sfw::drawString(font, "Game made by Benjamin Vongtawan", 100, 40, 20, 20);
+
 	sfw::drawLine(100, 80, 100 + 500 * (timer / 7.f), 80, RED);
 }
 

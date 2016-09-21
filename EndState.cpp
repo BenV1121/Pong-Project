@@ -22,13 +22,13 @@ void EndState::draw() const
 	unsigned j = sfw::loadTextureMap("./res/Joe.png");
 	unsigned d = sfw::loadTextureMap("./res/Di.png");
 
-	if		(p1score >= 10)
+	if		(p2score <= 0)
 	{
 		drawTexture(j, 0, 600, 800, 600, 0, false, 0, 0x88888888);
 		sfw::drawString(font, "PLAYER 1 WINS", 320, 550, 20, 20, 0, '\0', RED);
 		sfw::drawString(font, "SABAKU NO WA ORE NO STANDO DA!", 16, 100, 25, 25, 0, '\0', BLUE);
 	}
-	else if (p2score >= 10)
+	else if (p1score <= 0)
 	{
 		drawTexture(d, 0, 600, 800, 600, 0, false, 0, 0x88888888);
 		sfw::drawString(font, "PLAYER 2 WINS", 320, 550, 20, 20, 0, '\0', BLUE);
