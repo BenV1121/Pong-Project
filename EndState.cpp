@@ -24,13 +24,13 @@ void EndState::draw() const
 
 	if		(p2score <= 0)
 	{
-		drawTexture(j, 0, 600, 800, 600, 0, false, 0, 0x88888888);
+		drawTexture(j, 0, 600, 800, 600, 0, false, 0, WHITE);
 		sfw::drawString(font, "PLAYER 1 WINS", 320, 550, 20, 20, 0, '\0', RED);
 		sfw::drawString(font, "SABAKU NO WA ORE NO STANDO DA!", 16, 100, 25, 25, 0, '\0', BLUE);
 	}
 	else if (p1score <= 0)
 	{
-		drawTexture(d, 0, 600, 800, 600, 0, false, 0, 0x88888888);
+		drawTexture(d, 0, 600, 800, 600, 0, false, 0, WHITE);
 		sfw::drawString(font, "PLAYER 2 WINS", 320, 550, 20, 20, 0, '\0', BLUE);
 		sfw::drawString(font, "WRRRRRRRRYYYYYYYYYYYYYYYYYYYYYYY!", 1, 100, 30, 30, 0, '\0', YELLOW);
 	}
